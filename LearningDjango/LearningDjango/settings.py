@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'app',
+    'HelloDjangoApp',
     # Add your apps here to enable them
     'django.contrib.admin',
     'django.contrib.auth',
