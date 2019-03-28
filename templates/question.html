@@ -1,0 +1,107 @@
+﻿{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="row m-3">
+    <div class="col-2">
+        <div class="row">
+            <img class="m-4" src="{% static 'img/test.png' %}" width="90" height="90" alt="">
+        </div>
+        <div class="row mt-3">
+            <div class="btn-group mx-auto" role="group" aria-label="Basic example">
+                <span class="border border-secondary rounded-left">&nbsp;&nbsp;7&nbsp;&nbsp;</span>
+                <button type="button" class="btn btn-secondary btn-sm">&#8593;</button>
+                <button type="button" class="btn btn-secondary btn-sm">&#8595;</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-10">
+        <div class="row m-3">
+            <h3>How create a Moon park?</h3>
+            <a href="#"><h5 class="mt-0">{{ question.title }}</h5></a>
+        </div>
+        <div class="row m-3">
+            <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+        </div>
+        <div class="row m-3">
+            <div class="col-4">
+                <a href="#">answer(3)</a>
+            </div>
+            <div class="col-8">
+                Tags: <a href="#"><u>black-jack</u></a>,<a href="#"><u>bender</u></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row m-3">
+    <span class="border border-primary">
+        <div class="row m-2">
+            <div class="col-2">
+                <div class="row mt-3">
+                    <img class="ml-4" src="{% static 'img/test.png' %}" width="50" height="50" alt="">
+                </div>
+                <div class="row mt-5">
+                    <div class="btn-group mx-auto" role="group" aria-label="Basic example">
+                        <span class="border border-secondary rounded-left">&nbsp;&nbsp;7&nbsp;&nbsp;</span>
+                        <button type="button" class="btn btn-secondary btn-sm">&#8593;</button>
+                        <button type="button" class="btn btn-secondary btn-sm">&#8595;</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-10">
+                <a href="#"><h5 class="mt-0">{{ question.title }}</h5></a>
+                <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+                <div class="row m-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">Correct!</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </span>
+</div>
+
+
+<div class="row m-3">
+    <span class="border border-primary">
+        <div class="row m-2">
+            <div class="col-2">
+                <div class="row mt-3">
+                    <img class="ml-4" src="{% static 'img/test.png' %}" width="50" height="50" alt="">
+                </div>
+                <div class="row mt-5">
+                    <div class="btn-group mx-auto" role="group" aria-label="Basic example">
+                        <span class="border border-secondary rounded-left">&nbsp;&nbsp;7&nbsp;&nbsp;</span>
+                        <button type="button" class="btn btn-secondary btn-sm">&#8593;</button>
+                        <button type="button" class="btn btn-secondary btn-sm">&#8595;</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-10">
+                <a href="#"><h5 class="mt-0">{{ question.title }}</h5></a>
+                <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+                <div class="row m-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">Correct!</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </span>
+</div>
+
+<div class="row m-3">
+    <div class="input-group">
+        <textarea class="form-control" id="" rows="4" placeholder="Enter your answer here."></textarea>
+    </div>
+</div>
+    
+{% endblock %}

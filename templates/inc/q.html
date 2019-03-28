@@ -1,0 +1,40 @@
+﻿{% load static %}
+
+<div class="row mt-4">
+    <span class="border border-primary">
+        <div class="row m-2">
+            <div class="col-2">
+                <div class="row mt-3">
+                    <img class="ml-4" src="{% static 'img/test.png' %}" width="50" height="50" alt="">
+                </div>
+                <div class="row mt-5">
+                    <div class="btn-group mx-auto" role="group" aria-label="Basic example">
+                        <span class="border border-secondary rounded-left">&nbsp;&nbsp;7&nbsp;&nbsp;</span>
+                        <button type="button" class="btn btn-secondary btn-sm">&#8593;</button>
+                        <button type="button" class="btn btn-secondary btn-sm">&#8595;</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-10">
+                <div class="row m-2">
+                    <a href="{% url 'question' question.id %}"><h5 class="mt-0">{{ question.title }}</h5></a>
+                </div>
+                <div class="row m-2">
+                    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+                </div>
+
+                <div class="row m-2">
+                    <div class="col-4">
+                        <a href="#">answer(3)</a>
+                    </div>
+                    <div class="col-8">
+                        Tags: <a href="#"><u>black-jack</u></a>,<a href="#"><u>bender</u></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </span>
+</div>
+
+

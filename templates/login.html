@@ -1,0 +1,53 @@
+﻿{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <div class="row mt-5">
+        <h2>Log In</h2>
+    </div>
+
+    <div class="row mt-2">
+        <p><a class="text-danger">Sorry, wrong password!</a></p>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-2">
+            <p>Login</p>
+        </div>
+        <div class="col-5">
+                <input type="email" class="form-control" id="" aria-describedby="emailHelp" placeholder="Enter your login here">
+        </div>
+        <div class="col-5"></div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-2">
+            <p>Password</p>
+        </div>
+        <div class="col-5">
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+        <div class="col-5"></div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-2"></div>
+        <div class="col-5">
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+        </div>
+        <div class="col-5"></div>
+        
+    </div>
+    
+    <div class="row mt-3">
+        <button type="submit" class="btn btn-primary">Log in!</button>
+    </div>
+
+    <div class="row mt-3">
+        <a class="page-link" href="{% url 'signup' %}"><u>create new account</u></a>
+    </div>
+{% endblock %}

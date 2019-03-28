@@ -1,0 +1,82 @@
+﻿{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <div class="row mt-5">
+        <h2>Registration</h2>
+    </div>
+
+    <div class="row mt-2">
+        <p><a class="text-danger">Sorry, this email address allready registred!</a></p>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-3">
+            <p>Login</p>
+        </div>
+        <div class="col-4">
+            <input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="dr_pepper">
+        </div>
+        <div class="col-5"></div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-3">
+            <p>Email</p>
+        </div>
+        <div class="col-4">
+            <input type="email" class="form-control" id="" aria-describedby="emailHelp" placeholder="dr.pepper@mail.ru">
+        </div>
+        <div class="col-5"></div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-3">
+            <p>NickName</p>
+        </div>
+        <div class="col-4">
+             <input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Dr. Pepper">
+        </div>
+        <div class="col-5"></div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-3">
+            <p>Password</p>
+        </div>
+        <div class="col-4">
+            <input type="password" class="form-control" id="" placeholder="Password">
+        </div>
+        <div class="col-5"></div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-3">
+            <p>Repeat password</p>
+        </div>
+        <div class="col-4">
+            <input type="password" class="form-control" id="" placeholder="Password">
+        </div>
+        <div class="col-5"></div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-3"></div>
+        <div class="col-4">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="">
+                <label class="custom-file-label" for="">choose</label>
+            </div>
+        </div>
+        <div class="col-5"></div>
+    </div>
+   
+    <div class="row mt-3">
+        <div class="col-3"></div>
+        <div class="col-4">
+            <button type="submit" class="btn btn-primary">Log in!</button>
+        </div>
+        <div class="col-5"></div>
+    </div>
+{% endblock %}
