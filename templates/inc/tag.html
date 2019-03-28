@@ -1,13 +1,10 @@
-﻿{% extends "base.html" %}
+{% extends "base.html" %}
 {% load static %}
 {% block content %}
 
     <div class="row mt-5">
         <div class="col-4">
-            <h3>New Questions</h3>
-        </div>
-        <div class="col-3 mt-2">
-            <a href="#"><u>Hot Questions(3)</u></a>
+            <h3>Tag : {{tag}}</h3>
         </div>
     </div>
     {% for question in questions %}
