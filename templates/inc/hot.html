@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div class="row mt-5">
+        <h3>HOT QUESTIONS</h3>
+    </div>
+    {% for question in questions %}
+        {% include "inc/q.html" %}
+    {% endfor %}
+    {% include 'paginator.html' %}
+{% endblock %}
