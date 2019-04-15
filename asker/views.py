@@ -5,6 +5,7 @@ from django.core.paginator import Paginator
 
 
 fake = Faker()
+
 questions = [
         {
             'id': i,
@@ -16,22 +17,32 @@ questions = [
     ]
 
 
-def paginator(questions_list, request):
-    pager = Paginator(questions_list, 4)
+def paginator(abstract_list, request):
+    pager = Paginator(abstract_list, 4)
 
     page = request.GET.get('page')
     try:
-        questions_on_page = pager.page(page)
+        elements_on_page = pager.page(page)
     except:
-        questions_on_page = pager.page(1)
-    return questions_on_page
+        elements_on_page = pager.page(1)
+    return elements_on_page
 
 
 def index(request):
-    questions_list = paginator(questions,request);
+    questions_list = paginator(questions, request)
 
     return render(request, 'index.html', {
         'questions': questions_list,
+        'indexPage': True,
+    })
+
+
+def hot(request):
+    questions_list_hot = paginator(questions, request)
+
+    return render(request, 'index.html', {
+        'questions': questions_list_hot,
+        'indexPage': False,
     })
 
 
@@ -48,7 +59,16 @@ def register(request):
 
 
 def question(request, id):
-    return render(request, 'question.html', {})
+    answers = [
+        {
+            'id': id,
+            'text': '\n'.join(fake.sentences(fake.random_int(6, 10))),
+        }
+        for i in range(5)
+    ]
+    return render(request, 'question.html', {
+        'answers': answers,
+    })
 
 
 def settings(request):
@@ -73,19 +93,5 @@ def tag(request, tag):
     })
 
 
-def hot(request):
-    hot_questions = [
-        {
-            'id': i,
-            'title': fake.sentence(),
-            'text': '\n'.join(fake.sentences(fake.random_int(3, 6))),
-            'tags': [fake.word() for i in range(fake.random_int(2, 3))],
-        }
-        for i in range(8)
-    ]
-    questions_list = paginator(hot_questions, request)
 
-    return render(request, 'hot.html', {
-        'questions': questions_list,
-    })
 

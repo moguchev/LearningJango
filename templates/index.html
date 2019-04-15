@@ -4,14 +4,32 @@
 
     <div class="row mt-5">
         <div class="col-4">
-            <h3>New Questions</h3>
+            {% if indexPage %}
+                <div class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><u>New Questions</u></a>
+                </div>
+            {% else %}
+                <div class="page-item">
+                    <a class="page-link" href="{% url 'index' %}" ><u>New Questions</u></a>
+                </div>
+            {% endif %}
         </div>
-        <div class="col-3 mt-2">
-            <a href="{% url 'hot' %}"><u>Hot Questions(3)</u></a>
+        <div class="col-4">
+            {% if indexPage %}
+                <div class="page-item">
+                    <a class="page-link" href="{% url 'hot' %}"><u>Hot Questions</u></a>
+                </div>
+            {% else %}
+               <div class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><u>Hot Questions</u></a>
+            </div>
+            {% endif %}
         </div>
     </div>
+
     {% for question in questions %}
         {% include "inc/q.html" %}
     {% endfor %}
-    {% include 'paginator.html' %}
+
+    {% include 'paginator.html' with page=questions %}
 {% endblock %}

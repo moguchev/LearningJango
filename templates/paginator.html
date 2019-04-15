@@ -1,6 +1,6 @@
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center mt-4">
-        {% if questions.has_previous %}
+        {% if page.has_previous %}
             <li class="page-item">
                 <a class="page-link" href="?page=1">first</a>
             </li>
@@ -14,23 +14,23 @@
             </li>
         {% endif %}
 
-        {% if questions.number > 1 %}
+        {% if page.number > 1 %}
             <li class="page-item">
-                <a class="page-link" href="?page={{ questions.previous_page_number }}">{{ questions.previous_page_number }}</a></li>
+                <a class="page-link" href="?page={{ questions.previous_page_number }}">{{ page.previous_page_number }}</a></li>
             </li>
         {% endif %}
 
         <li class="page-item">
-            <a class="page-link" href="#">{{ questions.number }}</a></li>
+            <a class="page-link" href="#">{{ page.number }}</a></li>
         </li>
 
-        {% if questions.number < questions.paginator.num_pages %}
+        {% if page.number < page.paginator.num_pages %}
             <li class="page-item">
-                <a class="page-link" href="?page={{ questions.next_page_number }}">{{ questions.next_page_number }}</a></li>
+                <a class="page-link" href="?page={{ questions.next_page_number }}">{{ page.next_page_number }}</a></li>
             </li>
         {% endif %}
 
-        {% if questions.has_next %}
+        {% if page.has_next %}
             <li class="page-item">
                 <a class="page-link" href="?page={{ questions.next_page_number }}">Next</a>
             </li>
