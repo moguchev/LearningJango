@@ -11,7 +11,7 @@ class Profile(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.PROTECT
     )
-    upload = models.ImageField(default="avatars/emptyUser.png", upload_to='uploads/%Y/%m/%d/')
+    upload = models.ImageField(default='static/img/user.png', upload_to='static/media/images/user-avatar')
     register_date = models.DateTimeField(default=timezone.now, verbose_name='Profile creation date')
     rank = models.IntegerField(default=0, verbose_name='User rating')
 
@@ -21,8 +21,7 @@ class Profile(models.Model):
 
 class Tag(models.Model):
     objects = TagManager()
-
-    title = models.CharField(max_length=32, default='404', verbose_name='Tag')
+    title = models.CharField(max_length=32, verbose_name='Tag')
 
     def __str__(self):
         return self.title
@@ -70,7 +69,6 @@ class Question(models.Model):
 
     tags = models.ManyToManyField(
         Tag,
-        related_name='questions',
         blank=True,
         verbose_name='Tags',
     )
@@ -79,11 +77,11 @@ class Question(models.Model):
     votes = GenericRelation(Like, related_query_name='questions')
 
     def __str__(self):
-        return self.title
+        return f"{self.pk} {self.title}"
 
 
 class Answer(models.Model):
-    object = AnswerManager()
+    objects = AnswerManager()
 
     author = models.ForeignKey(
         to=Profile,

@@ -1,8 +1,15 @@
 ﻿{% extends "base.html" %}
-
 {% load static %}
 
 {% block content %}
+<div class="row m-4">
+    <form action="{% url 'login' %}" method="POST" novalidate>
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="btn btn-primary">login</button>
+    </form>
+</div>
+
     <div class="row mt-5">
         <h2>Log In</h2>
     </div>

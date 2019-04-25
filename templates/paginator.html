@@ -5,7 +5,7 @@
                 <a class="page-link" href="?page=1">first</a>
             </li>
             <li class="page-item">
-                <a class="page-link" href="?page={{ questions.previous_page_number }}">Previous</a>
+                <a class="page-link" href="?page={{ page.previous_page_number }}">Previous</a>
             </li>
 
         {% else %}
@@ -16,7 +16,7 @@
 
         {% if page.number > 1 %}
             <li class="page-item">
-                <a class="page-link" href="?page={{ questions.previous_page_number }}">{{ page.previous_page_number }}</a></li>
+                <a class="page-link" href="?page={{ page.previous_page_number }}">{{ page.previous_page_number }}</a></li>
             </li>
         {% endif %}
 
@@ -26,16 +26,16 @@
 
         {% if page.number < page.paginator.num_pages %}
             <li class="page-item">
-                <a class="page-link" href="?page={{ questions.next_page_number }}">{{ page.next_page_number }}</a></li>
+                <a class="page-link" href="?page={{ page.next_page_number }}">{{ page.next_page_number }}</a></li>
             </li>
         {% endif %}
 
         {% if page.has_next %}
             <li class="page-item">
-                <a class="page-link" href="?page={{ questions.next_page_number }}">Next</a>
+                <a class="page-link" href="?page={{ page.next_page_number }}">Next</a>
             </li>
             <li class="page-item">
-                <a class="page-link" href="?page={{questions.paginator.num_pages}}">last</a>
+                <a class="page-link" href="?page={{ page.paginator.num_pages}}">last</a>
             </li>
         {% else %}
             <li class="page-item disabled">

@@ -1,20 +1,10 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from faker import Faker
 from django.core.paginator import Paginator
-
-
-fake = Faker()
-
-questions = [
-        {
-            'id': i,
-            'title': fake.sentence(),
-            'text': '\n'.join(fake.sentences(fake.random_int(3, 6))),
-            'tags': [fake.word() for i in range(fake.random_int(2, 5))],
-        }
-        for i in range(50)
-    ]
+from django.contrib import auth
+from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect, reverse
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
+from asker.models import *
+from asker.forms import *
 
 
 def paginator(abstract_list, request):
@@ -29,16 +19,18 @@ def paginator(abstract_list, request):
 
 
 def index(request):
-    questions_list = paginator(questions, request)
+    question_list = Question.objects.get_new()
+    question_list = paginator(question_list, request)
 
     return render(request, 'index.html', {
-        'questions': questions_list,
+        'questions': question_list,
         'indexPage': True,
     })
 
 
 def hot(request):
-    questions_list_hot = paginator(questions, request)
+    questions_list_hot = Question.objects.get_hot()
+    questions_list_hot = paginator(questions_list_hot, request)
 
     return render(request, 'index.html', {
         'questions': questions_list_hot,
@@ -47,11 +39,44 @@ def hot(request):
 
 
 def login(request):
-    return render(request, 'login.html', {})
+    if request.POST:
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            cdata = form.cleaned_data
+            user = auth.authenticate(**cdata)
+            if user is not None:
+                auth.login(request, user)
+                return redirect('/')
+            form.add_error(None, "no such user")
+    else:
+        form = LoginForm()
+    return render(request, 'login.html', {
+        'form': form,
+    })
 
 
+def logout(request):
+    return redirect('/')
+
+
+@login_required
 def ask(request):
-    return render(request, 'ask.html', {})
+    # if request.POST:
+    #     form = AskForm(
+    #         request.user.profile,
+    #         data=request.POST )
+    #     if form.is_valid():
+    #         q = form.save()
+    #         return redirect(reverse(
+    #             'question', kwargs={
+    #                 'qid': q.pk
+    #             }
+    #         ))
+    # else:
+    #     form = AskForm(request.user.profile)
+    return render(request, 'ask.html', {
+        # 'form': form,
+    })
 
 
 def register(request):
@@ -59,15 +84,12 @@ def register(request):
 
 
 def question(request, id):
-    answers = [
-        {
-            'id': id,
-            'text': '\n'.join(fake.sentences(fake.random_int(6, 10))),
-        }
-        for i in range(5)
-    ]
+    question_i = Question.objects.get(pk=id)
+    answers = Answer.objects.get_hot(id)
+    answers = paginator(answers, request)
     return render(request, 'question.html', {
         'answers': answers,
+        'question': question_i,
     })
 
 
@@ -76,16 +98,9 @@ def settings(request):
 
 
 def tag(request, tag):
-    tag_questions = [
-        {
-            'id': i,
-            'title': fake.sentence(),
-            'text': '\n'.join(fake.sentences(fake.random_int(3, 6))),
-            'tags': [tag]
-        }
-        for i in range(8)
-    ]
-    questions_list = paginator(tag_questions, request)
+    tag_i = Tag.objects.get(title=tag)
+    questions_list = Question.objects.filter(tags=tag_i.id)
+    questions_list = paginator(questions_list, request)
 
     return render(request, 'tag.html', {
         'questions': questions_list,

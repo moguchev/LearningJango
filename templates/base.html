@@ -1,10 +1,12 @@
 ﻿{% load static %}
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="en">
 <head>
-    <!--Required meta tags-->
+    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
 
     <title>Hello, world!</title>
 
@@ -29,15 +31,18 @@
 
         {% if user.is_authenticated %}
         <ui class="navbar-nav mr-auto">
-             <li class="nav-item dropdown">
-                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                     <span class="text_style">{{ user.get_username }}</span>
-                 </a>
-                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                     <a class="nav-link dropdown-item" href="{% url 'settings' %}"><span class="text_style">Settings</span></a>
-                     <a class="nav-link dropdown-item" href="#"><span class="text_style">Log Out</span></a>
-                 </div>
-             </li>
+            <div class="row">
+                <img class="mt-2" src="{% static 'img/test.png' %}" width="36" height="36" class="d-inline-block align-top" alt="">
+                <li class="nav-link m-2">
+                    <span class="text_style"><h5>{{ user.get_username }}</h5></span>
+                </li>
+                <li class="nav-item m-2">
+                    <a class="nav-link" href="{% url 'settings' %}"><span class="text_style"><u>Settings</u></span></a>
+                </li>
+                <li class="nav-item m-2">
+                    <a class="nav-link" href="{% url 'index' %}"><span class="text_style"><u>Log Out</u></span></a>
+                </li>
+            </div>
         </ui>
         {% else %}
         <ui class="navbar-nav mr-auto">

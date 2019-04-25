@@ -9,8 +9,7 @@
                 </div>
                 <div class="row mt-5">
                     <div class="btn-group mx-auto" role="group" aria-label="Basic example">
-
-                        <span class="border border-secondary rounded-left">&nbsp;123&nbsp;&nbsp;</span>
+                        <span class="border border-secondary rounded-left">&nbsp;{{ question.rating }}&nbsp;&nbsp;</span>
                         <a href="#" class="btn btn-secondary btn-sm">&#8593;</a>
                         <a href="#" class="btn btn-secondary btn-sm">&#8595;</a>
                     </div>
@@ -27,12 +26,12 @@
 
                 <div class="row m-2">
                     <div class="col-4">
-                        <a href="{% url 'question' question.id %}">answer(3)</a>
+                        <a href="{% url 'question' question.id %}">answer</a>
                     </div>
                     <div class="col-8">
                         <span class="text_style" style="white-space: nowrap; margin-left: 6px"> Tags:</span>
-                        {% for tag in question.tags %}
-                            <a href="{% url 'tag' tag %}"> <span class="top_name"> {{tag}}  </span></a>
+                        {% for tag in question.tags.all %}
+                            <a href="{% url 'tag' tag.title %}"> <span class="top_name"> {{tag.title}}</span></a>
                         {% endfor %}
                     </div>
                 </div>
