@@ -27,7 +27,7 @@
         </div>
         <div class="row m-3">
             <div class="col">
-                {% for tag in question.tags.all %}
+                {% for tag in tags %}
                     <a href="{% url 'tag' tag.title %}"> <span class="top_name"> {{ tag.title }}</span></a>
                 {% endfor %}
             </div>
@@ -40,12 +40,17 @@
     {% include "inc/answer.html" %}
 {% endfor %}
 
-
-<div class="row m-3">
-    <div class="input-group">
-        <textarea class="form-control" id="" rows="4" placeholder="Enter your answer here."></textarea>
-    </div>
-</div>
+ <div class="row m-4">
+        <form action="{% url 'question' id=question.pk %}" method="POST" novalidate>
+            {% csrf_token %}
+            {{ form }}
+            <div class="row mt-3">
+                <div class="col-3">
+                    <button type="submit" class="btn btn-primary">Answer!</button>
+                </div>
+            </div>
+        </form>
+ </div>
 
 {% include 'paginator.html' with page=answers %}
 {% endblock %}

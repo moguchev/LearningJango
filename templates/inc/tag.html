@@ -7,8 +7,11 @@
             <h3>Tag : {{tag}}</h3>
         </div>
     </div>
+
     {% for question in questions %}
         {% include "inc/q.html" %}
     {% endfor %}
-    {% include 'paginator.html' %}
+
+    {% include 'paginator.html' with page=questions %}
+
 {% endblock %}

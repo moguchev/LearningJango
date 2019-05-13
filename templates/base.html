@@ -40,7 +40,7 @@
                     <a class="nav-link" href="{% url 'settings' %}"><span class="text_style"><u>Settings</u></span></a>
                 </li>
                 <li class="nav-item m-2">
-                    <a class="nav-link" href="{% url 'index' %}"><span class="text_style"><u>Log Out</u></span></a>
+                    <a class="nav-link" href="{% url 'logout' %}"><span class="text_style"><u>Log Out</u></span></a>
                 </li>
             </div>
         </ui>
@@ -90,8 +90,6 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="{% static 'js/jquery-3.3.1.slim.min.js' %}"></script>
-    <script src="{% static 'js/popper.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
 </body>
 </html>

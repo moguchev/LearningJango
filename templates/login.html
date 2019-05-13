@@ -2,59 +2,46 @@
 {% load static %}
 
 {% block content %}
-<div class="row m-4">
-    <form action="{% url 'login' %}" method="POST" novalidate>
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit" class="btn btn-primary">login</button>
-    </form>
-</div>
-
     <div class="row mt-5">
         <h2>Log In</h2>
     </div>
-
-    <div class="row mt-2">
-        <p><a class="text-danger">Sorry, wrong password!</a></p>
-    </div>
-
-    <div class="row mt-3">
-        <div class="col-2">
-            <p>Login</p>
+    {% if form.errors %}
+        <div class="row mt-2">
+            <p><a class="text-danger">Sorry, wrong password or login!</a></p>
         </div>
-        <div class="col-5">
-                <input type="email" class="form-control" id="" aria-describedby="emailHelp" placeholder="Enter your login here">
-        </div>
-        <div class="col-5"></div>
-    </div>
+    {% endif %}
+    <div class="row m-4">
+        <form action="{% url 'login' %}" method="POST" novalidate>
+            {% csrf_token %}
 
-    <div class="row mt-3">
-        <div class="col-2">
-            <p>Password</p>
-        </div>
-        <div class="col-5">
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-        </div>
-        <div class="col-5"></div>
-    </div>
-
-    <div class="row mt-3">
-        <div class="col-2"></div>
-        <div class="col-5">
-            <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            <div class="row mt-3">
+                <div class="col-3">
+                    {{ form.username.label_tag }}
+                </div>
+                <div class="col-9">
+                    {{ form.username }}
+                </div>
             </div>
-        </div>
-        <div class="col-5"></div>
-        
-    </div>
-    
-    <div class="row mt-3">
-        <button type="submit" class="btn btn-primary">Log in!</button>
+
+            <div class="row mt-3">
+                <div class="col-3">
+                     {{ form.password.label_tag }}
+                </div>
+                <div class="col-9">
+                     {{ form.password }}
+                </div>
+            </div>
+
+            <div class="row mt-3 ml-1">
+                <button type="submit" class="btn btn-primary">Log in!</button>
+            </div>
+
+            <div class="row mt-3 ml-1">
+                <a class="page-link" href="{% url 'signup' %}"><u>create new account</u></a>
+            </div>
+        </form>
     </div>
 
-    <div class="row mt-3">
-        <a class="page-link" href="{% url 'signup' %}"><u>create new account</u></a>
-    </div>
 {% endblock %}
+
+

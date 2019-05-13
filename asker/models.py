@@ -2,6 +2,7 @@ from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.fields import GenericRelation
+from django.db.models import Count
 from django.utils import timezone
 from asker.managers import *
 
@@ -11,9 +12,21 @@ class Profile(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.PROTECT
     )
-    upload = models.ImageField(default='static/img/user.png', upload_to='static/media/images/user-avatar')
-    register_date = models.DateTimeField(default=timezone.now, verbose_name='Profile creation date')
-    rank = models.IntegerField(default=0, verbose_name='User rating')
+
+    avatar = models.ImageField(
+        upload_to='avatars/%Y/%m/%d/%H',
+        default='static/img/user.png',
+        verbose_name='Avatar'
+    )
+
+    register_date = models.DateTimeField(
+        default=timezone.now,
+        verbose_name='Profile creation date'
+    )
+
+    rank = models.IntegerField(
+        default=0,
+        verbose_name='User rating')
 
     def __str__(self):
         return self.user.username
@@ -65,7 +78,6 @@ class Question(models.Model):
     created_at = models.DateTimeField(default=timezone.now, verbose_name='Question date')
     title = models.CharField(max_length=128, verbose_name='Header')
     text = models.TextField(verbose_name='Question full text')
-    is_active = models.BooleanField(default=True)
 
     tags = models.ManyToManyField(
         Tag,

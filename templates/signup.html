@@ -3,73 +3,87 @@
 {% load static %}
 
 {% block content %}
-    <div class="row mt-5">
-        <h2>Registration</h2>
-    </div>
+<div class="row mt-5">
+    <h2>Registration</h2>
+</div>
 
-    <div class="row mt-2">
-        <p><a class="text-danger">Sorry, this email address allready registred!</a></p>
-    </div>
-
+<div class="row m-4">
+    <form action="{% url 'signup' %}" method="POST" novalidate>
+    {% csrf_token %}
     <div class="row mt-3">
         <div class="col-3">
             <p>Login</p>
         </div>
-        <div class="col-4">
-            <input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="dr_pepper">
+        <div class="col-6">
+            {{ form.username }}
         </div>
-        <div class="col-5"></div>
+        <div class="col-3">
+            {% if form.username.errors %}
+             <div class="row-1">
+                 <a class="text-danger">{{ form.username.errors }}</a>
+             </div>
+            {% endif %}
+        </div>
     </div>
 
     <div class="row mt-3">
         <div class="col-3">
             <p>Email</p>
         </div>
-        <div class="col-4">
-            <input type="email" class="form-control" id="" aria-describedby="emailHelp" placeholder="dr.pepper@mail.ru">
+        <div class="col-6">
+            {{ form.email }}
         </div>
-        <div class="col-5"></div>
-    </div>
-
-    <div class="row mt-3">
         <div class="col-3">
-            <p>NickName</p>
+            {% if form.email.errors %}
+                <div class="row-1">
+                    <a class="text-danger">{{ form.email.errors }}</a>
+                </div>
+            {% endif %}
         </div>
-        <div class="col-4">
-             <input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Dr. Pepper">
-        </div>
-        <div class="col-5"></div>
     </div>
 
     <div class="row mt-4">
         <div class="col-3">
             <p>Password</p>
         </div>
-        <div class="col-4">
-            <input type="password" class="form-control" id="" placeholder="Password">
+        <div class="col-6">
+            {{ form.password }}
         </div>
-        <div class="col-5"></div>
+        <div class="col-3">
+            {% if form.password.errors %}
+                <div class="row-1">
+                    <a class="text-danger">{{ form.password.errors }}</a>
+                </div>
+            {% endif %}
+        </div>
     </div>
 
     <div class="row mt-3">
         <div class="col-3">
             <p>Repeat password</p>
         </div>
-        <div class="col-4">
-            <input type="password" class="form-control" id="" placeholder="Password">
+        <div class="col-6">
+            {{ form.repeat_password }}
         </div>
-        <div class="col-5"></div>
+        <div class="col-3">
+            {% if form.repeat_password.errors %}
+                <div class="row-1">
+                    <a class="text-danger">{{ form.repeat_password.errors }}</a>
+                </div>
+            {% endif %}
+        </div>
     </div>
 
     <div class="row mt-3">
-        <div class="col-3"></div>
-        <div class="col-4">
+        <div class="col-3">
+            <p>Avatar</p>
+        </div>
+        <div class="col-6">
             <div class="custom-file">
-                <input type="file" class="custom-file-input" id="">
-                <label class="custom-file-label" for="">choose</label>
+                {{ form.avatar }}
             </div>
         </div>
-        <div class="col-5"></div>
+        <div class="col-3"></div>
     </div>
    
     <div class="row mt-3">
@@ -79,4 +93,6 @@
         </div>
         <div class="col-5"></div>
     </div>
+    </form>
+</div>
 {% endblock %}

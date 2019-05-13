@@ -1,7 +1,7 @@
 ﻿{% load static %}
 
 <div class="row mt-2">
-    <span class="border border-primary">
+    <span class="border border-primary col-12">
         <div class="row m-2">
             <div class="col-2">
                 <div class="row mt-3">
@@ -31,8 +31,11 @@
                     <div class="col-8">
                         <span class="text_style" style="white-space: nowrap; margin-left: 6px"> Tags:</span>
                         {% for tag in question.tags.all %}
-                            <a href="{% url 'tag' tag.title %}"> <span class="top_name"> {{tag.title}}</span></a>
+                            <a href="{% url 'tag' tag.title %}"><span class="top_name"> {{tag.title}}</span></a>
                         {% endfor %}
+                        <div class="row ml-1">
+                            <span class="text_style" style="white-space: nowrap; margin-left: 6px">{{ question.created_at }}</span>
+                        </div>
                     </div>
                 </div>
             </div>

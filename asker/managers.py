@@ -5,10 +5,10 @@ from django.db.models import Sum
 
 class QuestionManager(models.Manager):
     def get_hot(self):
-        return self.filter(is_active=True).order_by('-rating').prefetch_related()
+        return self.all().order_by('-rating').prefetch_related()
 
     def get_by_tag(self, tag_title):
-        return self.filter(is_active=True).filter(tags__title=tag_title).prefetch_related()
+        return self.filter(tags__title=tag_title).prefetch_related()
 
     def get_new(self):
         return self.all().order_by('-created_at').prefetch_related()
