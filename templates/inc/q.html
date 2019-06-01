@@ -26,7 +26,7 @@
 
                 <div class="row m-2">
                     <div class="col-4">
-                        <a href="{% url 'question' question.id %}">answer</a>
+                        <a href="{% url 'question' question.id %}">answers: ({{ question.num_answers }})</a>
                     </div>
                     <div class="col-8">
                         <span class="text_style" style="white-space: nowrap; margin-left: 6px"> Tags:</span>
@@ -34,7 +34,7 @@
                             <a href="{% url 'tag' tag.title %}"><span class="top_name"> {{tag.title}}</span></a>
                         {% endfor %}
                         <div class="row ml-1">
-                            <span class="text_style" style="white-space: nowrap; margin-left: 6px">{{ question.created_at }}</span>
+                            <span class="text_style" style="white-space: nowrap; margin-left: 6px"><p class="small">{{ question.created_at }}</p></span>
                         </div>
                     </div>
                 </div>

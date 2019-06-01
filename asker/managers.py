@@ -1,5 +1,5 @@
-from django.contrib.auth.models import UserManager as AbstractUserManager
 from django.db import models
+from django.contrib.auth.models import UserManager
 from django.db.models import Sum
 
 
@@ -38,5 +38,3 @@ class LikeManager(models.Manager):
 
     def sum_rating(self):
         return self.get_queryset().aggregate(Sum('vote')).get('vote__sum') or 0
-
-

@@ -8,13 +8,15 @@ from asker.managers import *
 
 
 class Profile(models.Model):
+    objects = UserManager()
+
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
         on_delete=models.PROTECT
     )
 
     avatar = models.ImageField(
-        upload_to='avatars/%Y/%m/%d/%H',
+        upload_to='uploads/%Y/%m/%d/%H',
         default='static/img/user.png',
         verbose_name='Avatar'
     )

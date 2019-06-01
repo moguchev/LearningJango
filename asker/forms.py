@@ -17,7 +17,7 @@ class LoginForm(forms.Form):
         'class': 'form-control',
         'placeholder': 'Password'
     }))
-
+# -clean
     def clean(self):
         username = self.cleaned_data.get('username')
         password = self.cleaned_data.get('password')
@@ -140,12 +140,10 @@ class SignUpForm(forms.Form):
         )
         if self.cleaned_data['avatar'] is not None:
             profile = Profile(user=user, avatar=self.cleaned_data['avatar'])
-            profile.save()
-            user.save()
         else:
             profile = Profile(user=user)
-            profile.save()
-            user.save()
+        profile.save()
+        user.save()
         return user
 
 
@@ -193,16 +191,14 @@ class SettingsForm(forms.Form):
 
     def clean_username(self):
         username = self.cleaned_data['username']
-        if self.fields['username'].has_changed(initial=self.initial['username'], \
-                                               data=username):
+        if self.fields['username'].has_changed(initial=self.initial['username'], data=username):
             if User.objects.filter(username=username).exists():
                 raise forms.ValidationError('Login already exists!')
         return username
 
     def clean_email(self):
         email = self.cleaned_data['email']
-        if self.fields['email'].has_changed(initial=self.initial['email'], \
-                                            data=email):
+        if self.fields['email'].has_changed(initial=self.initial['email'], data=email):
             if User.objects.filter(email=email).exists():
                 raise forms.ValidationError('Email already exists!')
         return email

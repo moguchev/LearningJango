@@ -1,12 +1,11 @@
 from django.core.paginator import Paginator
-from django.contrib import auth
+from django.utils.http import is_safe_url, urlunquote
 from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from asker.models import *
-from django.http import Http404
 from asker.forms import *
-
+from django.db import models
 
 def paginator(abstract_list, request):
     pager = Paginator(abstract_list, 4)
@@ -22,6 +21,7 @@ def paginator(abstract_list, request):
 def index(request):
     question_list = Question.objects.get_new()
     question_list = paginator(question_list, request)
+    question_list = question_list.object_list.annotate(num_answers=Count('answers'))
 
     return render(request, 'index.html', {
         'questions': question_list,
@@ -67,9 +67,8 @@ def login(request):
     })
 
 
+@login_required
 def logout(request):
-    if not request.user.is_authenticated:
-        raise Http404
     auth.logout(request)
     return redirect('/')
 
@@ -116,7 +115,7 @@ def question(request, id):
     if request.POST:
         if request.user.is_anonymous:
             return redirect(reverse('login'))
-        
+
         form = AnswerForm(
             request.user,
             id,
@@ -130,29 +129,32 @@ def question(request, id):
                     'id': id
                 }
             ))
-        else:
-            answers = Answer.objects.get_hot(id)
-            answers = paginator(answers, request)
-            return render(request, 'question.html', {
-                'question': question_i,
-                'answers': answers,
-                'tags': tags,
-                'form': form
-            })
     else:
-        answers = Answer.objects.get_hot(id)
-        answers = paginator(answers, request)
         form = AnswerForm(request.user, id)
-        return render(request, 'question.html', {
-            'question': question_i,
-            'answers': answers,
-            'tags': tags,
+
+    answers = Answer.objects.get_hot(id)
+    answers = paginator(answers, request)
+    return render(request, 'question.html', {
+        'question': question_i,
+        'answers': answers,
+        'tags': tags,
+        'form': form
+    })
+
+
+@login_required
+def settings(request):
+    user = request.user
+    if request.POST:
+        form = SettingsForm()
+        #if form.is_valid():
+
+    else:
+        form = SettingsForm()
+        return render(request, 'settings.html', {
+            'profile': user,
             'form': form
         })
-
-
-def settings(request):
-    return render(request, 'settings.html', {})
 
 
 
